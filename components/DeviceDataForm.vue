@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <form @submit.prevent="startGenerating">
     <label for="deviceId">Device ID:</label>
     <input v-model="deviceId" type="text" id="deviceId" required />
@@ -28,4 +28,32 @@ const sendDataToServer = async (data) => {
     console.error('Error sending data:', error);
   }
 };
+</script> -->
+
+<template>
+  <form @submit.prevent="startGenerating">
+    <label for="deviceId">Device ID:</label>
+    <input v-model="deviceId" type="text" id="deviceId" required />
+
+    <label for="interval">Interval (seconds):</label>
+    <input
+      v-model.number="interval"
+      type="number"
+      id="interval"
+      min="1"
+      required
+    />
+
+    <button type="submit" :disabled="isGenerating">Start Generating</button>
+    <button v-if="isGenerating" type="button" @click="stopGenerating">
+      Stop
+    </button>
+  </form>
+</template>
+
+<script setup>
+import { useDeviceData } from "~/composables/useDeviceData";
+
+const { deviceId, interval, isGenerating, startGenerating, stopGenerating } =
+  useDeviceData();
 </script>

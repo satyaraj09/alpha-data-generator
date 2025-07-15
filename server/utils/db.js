@@ -8,7 +8,7 @@ export const database = async () => {
       host: "localhost",
       user: "root",
       password: "",
-      database: "vega",
+      database: "vegaiot",
       waitForConnections: true,
       port: 3306,
       connectionLimit: 10,
